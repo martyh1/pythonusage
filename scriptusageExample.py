@@ -2,7 +2,7 @@
 import sys 
 
 def printUsage():
-    print("usage: fileOrganize [-y][-t][-v]\n\t-y make changes\n\t-t tell changes that *would* be made.\n\t-v verbose")
+    print("usage: fileOrganize [-y][-t][-v]\n\t-y make changes\n\t-t show changes that *would* be made.\n\t-v verbose")
 
 
 # tell user must use parms (so this doesn't just make changes to file system right away)
@@ -12,22 +12,22 @@ if (len(sys.argv) == 1) or (len(sys.argv) > 4):
     quit()
 
 # save args in readable var names
-makeChanges = tellChangesOnly = verbose = False
+makeChanges = showChangesOnly = verbose = False
 for arg in sys.argv:
     if arg == '-y':
         makeChanges = True
     elif arg == '-t':
-        tellChangesOnly = True
+        showChangesOnly = True
     elif arg == '-v':
         verbose = True
 
-if not makeChanges and not tellChangesOnly:
+if not makeChanges and not showChangesOnly:
     print("invalid arguments.  Must use either -t or -y")
     printUsage()
     quit()
 
 #check for conflicting args
-if makeChanges and tellChangesOnly:
+if makeChanges and showChangesOnly:
     print("Cannot use -y and -t together.")
     printUsage()
     quit()
